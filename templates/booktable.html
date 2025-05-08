@@ -1,0 +1,65 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+
+{% block childpage %}
+<style>
+    .form-control
+    {
+    height:50px;
+    margin-buttom:3%;
+    background:rgba(0,0,0,0.1)
+
+    }
+
+</style>
+
+<div class="row">
+    <h1 class="lead text-center" style="font-size: 75px;">Book<b style="color:maroon">Table</b></h1>
+</div>
+<div class="row">
+    <div class="col-sm-1"></div>
+  <div class="col-sm-5 mb-3 mx-auto">
+      <form method="post">
+          {% csrf_token %}
+         Name
+          <input type="text" name="name" required placeholder="Name.." class="form-control"/><br>
+         Email
+          <input type="email" name="email" required placeholder="Email.." class="form-control"/><br>
+         Mobile
+          <input type="number" name="mobile" required placeholder="Name.." class="form-control"/><br>
+          Number of People
+          <input type="number" name="people" required class="form-control" placeholder="No of People"><br>
+          Date of Booking
+          <input type="datetime-local" name="bdate" required class="form-control"/><br>
+          Time of Booking
+          <input type="time" name="btime" required class="form-control"/><br>
+          Type of Food :
+          <select class="form-control" name="foodtype">
+              <option>---select food Type--</option>
+              <option>Veg</option>
+              <option>Non-Veg</option>
+          </select><br>
+          Type of Event
+          <select class="form-control" name="eventtype">
+              <option>--select Event type--</option>
+              <option>Birthday</option>
+              <option>Anniversaery</option>
+              <option>Get Toghether</option>
+              <option>Farewell party</option>
+          </select><br>
+          <center>
+          <input type="submit" value="Book Now" class="btn text-light" style="background:#340850;"/>
+          </center>
+      </form>
+
+  </div>
+
+    <div class="col-sm-5 ">
+        <img src="{% static 'images/booktable.jpg' %}"  style="height:700px; border:2px solid black;" class="ms-3 mt-4"/>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block childpage %}
+{% if not request.session.user %}
+<script>
+alert("You have to login")
+location.href='/login/'
+</script>
+{% endif %}
+
+
+       <!-- heading -->
+<div class="row mb-2 mt-4">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5 text-center mx-auto my-4">
+        <p class="fs-3 m-0"> Your Cart added  <b class="text-color1">Items</b></p>
+        <i>simpl dummy text of the printing and typesetting
+        industry.Loren Ipsum has been the</i>
+        <hr/>
+    </div>
+</div>
+<!-- end heading -->
+<div class="row">
+<div class="col-sm-8 mx-auto">
+    {% for i in cartdata %}
+<!--- cart items -->
+<div class="row">
+    <div class="col-sm-12">
+<div class="card mb-3 shadow-lg ">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="../{{i.product_image}}" style="max-height:150px" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+       <table class="table table-hover">
+       <tr>
+       <th>Name</th>
+       <th>Unit Price</th>
+       <th>Total Price</th>
+       <th>Added Date</th>
+       <th>Cancel</th>
+       </tr>
+           <tr>
+               <td>{{i.product_name}} |</td>
+               <td><i class="fa-solid fa-indian-rupee-sign"></i>{{i.product_price}}</td>
+               <td><i class="fa-solid fa-indian-rupee-sign"></i>{{i.quantity}}</td>
+               <td><i class="fa-solid fa-indian-rupee-sign"></i>{{i.total_price}}</td>
+               <td>{{i.added_date}}</td>
+               <td><a href="/showcart?cid={{i.id}}" class="btn btn-sm btn-danger">Remove <i class="fa-solid fa-trash"></i></a></td>
+           </tr>
+       </table>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--- end cart items -->
+    {% endfor %}
+    <center>
+    <a href="/order?msg=1" class="btn btn-danger">Order Now</a>
+    </center>
+</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,239 @@
+
+{% extends 'base.html'%}
+{% load static %}
+{% block childpage %}
+    <div class="row slider">
+        <!--start slider-->
+        <div class="col-sm-12 p-0">
+
+            <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+      {% for i in sliderdata %}
+    <div class="carousel-item active">
+      <img src="../{{i.slider_picture}}" style="max-height:500px;" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{i.title}}</h5>
+        <p>{{i.description}}</p>
+      </div>
+    </div>
+      {% endfor %}
+
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+        </div>
+
+        <!--End slider-->
+    </div>
+
+<!-- heading -->
+<div class="row mb-2 mt-4">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5 ">
+        <p class="fs-3 m-0">Featured <b style="color:maroon;">Categories</b></p>
+        <i>"🍽 Find Your Flavor! 🌟 Browse Our Categories and Satisfy Every Craving, One Dish at a Time! 😋</i>
+        <hr/>
+    </div>
+</div>
+<!-- end heading -->
+    <div class="row category py-2">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+          <div class="row">
+              {% for x in cdata %}
+              <div class="col-sm-2 text-center">
+                  <p class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+                      <img src="../{{x.category_picture}}" style="max-height:45px;" class="img-fluid"/>
+                      <a href="../Food?pid={{x.id}}" style="text-decoration:none" class="text-dark">{{x.product_category}}</a>
+                  </p>
+              </div>
+         {% endfor %}
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+
+        <!-- heading -->
+<div class="row mb-2 mt-4">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5 ">
+        <p class="fs-3 m-0">Today's Deals <b style="color:maroon;">Best Offers</b></p>
+        <i>"🎉 Savor the Savings! 🍴 Explore Today's Exclusive Deals & Irresistible Offers at FlavorFusion. Treat Yourself—You Deserve It! 😋</i>
+        <hr/>
+    </div>
+</div>
+<!-- end heading -->
+
+    <div class="row maxdiscount">
+       <div class="col-sm-1"></div>
+       <div class="col-sm-10"></div>
+        <div class="row">
+            {% for i in productdata %}
+            <div class="col-sm-3">
+                <!-- start product -->
+                <div class="card border-0 shadow p-3 mb-5 bg-body-tertiary rounded" >
+
+           <img src="../{{i.product_image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                 <h5 class="card-title">{{product_name}}</h5>
+    <p class="card-text">
+        <i class="fa-solid fa-indian-rupee-sign"></i>{{i.price}}
+     <b>{{i.quantity}}</b>
+        <!-- cart count -->
+         <form action="/cart/">
+               <input type="hidden" name="pid" value="{{i.id}}"/>
+               <input type="hidden" name="pimage" value="{{i.product_image}}"/>
+               <input type="hidden" name="pprice" value="{{i.price}}"/>
+               <input type="hidden" name="pname" value="{{i.product_name}}"/>
+
+
+        <div class="input-group">
+                <b class="input-group-text fs-4" onclick="cminus{{i.id}}()">-</b>
+                <input type="text" value="0" name="pquantity" id="carttxt{{i.id}}" readonly class="form-control text-center fs-3">
+                <b class="input-group-text fs-4" onclick="cplus{{i.id}}()">+</b>
+            </div>
+        <!-- end cart count -->
+    </p>
+    <input type="submit" value="Add" class="btn bg-mycolor1 text-light">
+                 </form>
+  </div>
+</div>
+</div>
+
+                <!-- end product -->
+
+<script>
+    var x{{i.id}}=0
+    function cplus{{i.id}}()
+    {
+    x{{i.id}}++;
+    document.getElementById("carttxt{{i.id}}").value=x{{i.id}}
+    }
+    function cminus{{i.id}}()
+    {
+     if(x{{i.id}}>0)
+    {
+       x{{i.id}}--;
+    document.getElementById("carttxt{{i.id}}").value=x{{i.id}}
+    }
+    }
+</script>
+
+        {% endfor%}
+    </div>
+ <div class="col-sm-1"></div>
+
+</div>
+    <div class="row offers">
+        <div class="col-sm-10 mx-auto">
+            <div class="row">
+                <div class="col-sm-4">
+                <img src="{% static 'images/product/img17.jpg'%}" class="img-fluid"/>
+                    </div>
+                 <div class="col-sm-4">
+                <img src="{% static 'images/product/img18.jpg'%}" class="img-fluid"/>
+                    </div>
+                 <div class="col-sm-4">
+                <img src="{% static 'images/product/img19.jpg'%}" class="img-fluid"/>
+                    </div>
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+<!-- Our Services Section Start -->
+<div class="container">
+    <div class="row heading text-center my-4">
+    <div class="col-sm-4 mx-auto">
+    <p class="fs-3 p-0 m-0">Our <b  style="color:maroon;"> Services<i class="fa-solid fa-phone"></i></b></p>
+        <i>"🌟 What We Serve Beyond the Plate! 🍴 Explore Our Services Tailored to Elevate Your Dining Experience. 🥂"
+ </i>
+        <hr/>
+   </div>
+ </div>
+    <div class="row my-5">
+        <div class="col-sm-3 text-center">
+            <i class="fa-solid fa-truck-fast fs-3"></i>
+            <h2 style="font-size:25px;">Free Delivery</h2>
+            <b>on the order above 999/-</b>
+        </div>
+         <div class="col-sm-3 text-center">
+            <i class="fa-solid fa-sack-dollar fs-3" ></i>
+            <h2 style="font-size:25px;">Payment Processing</h2>
+            <b>Make safe & Secure payments</b>
+        </div>
+         <div class="col-sm-3 text-center">
+            <i class="fa-solid fa-bullhorn fs-3"></i>
+            <h2 style="font-size:25px;">Food Offering</h2>
+            <b> Best offers and new deals every week</b>
+        </div>
+         <div class="col-sm-3 text-center">
+            <i class="fa-solid fa-clock fs-3"></i>
+            <h2 style="font-size:25px;">Customer Services</h2>
+            <b>24/7 customer service availability</b>
+        </div>
+    </div>
+
+</div>
+
+<!-- Our Services Section end -->
+
+<!-- Our Team Section start -->
+<div class="row team my-4">
+       <div class="text-center fs-3 md-4">Master<b style="color:maroon;">Chef</b></div>
+    <div class="col-sm-3 text-center">
+        <div class="card sm-auto cardzoom" style="width: 18rem;">
+  <img src="{% static 'images/team-2.jpg' %}" class="card-img-top" height="300" width="100" alt="..."/>
+  <div class="card-body">
+    <h5 class="card-title">Kevin</h5>
+      <h6 class="card-subtitle">Executive Chef</h6>
+    <p class="card-text">" With over 15  years  of experience, Chef  Kevin leads our kitchen with creativity and precision.  His dedication to using fresh,  seasonal ingredients ensures every dish is  a   masterpiece." </p>
+  </div>
+</div>
+    </div>
+    <div class="col-sm-3 text-center">
+        <div class="card sm-auto cardzoom" style="width: 18rem;">
+  <img src="{% static 'images/team-1.jpg' %}" class="card-img-top" height="300" width="100" alt="..."/>
+  <div class="card-body">
+    <h5 class="card-title">David</h5>
+      <h6 class="card-subtitle">Master Chef</h6>
+    <p class="card-text">Chef David, our culinary mastermind, brings years of expertise and passion to every dish. With a keen eye for detail and a love for innovative flavors, he transforms ingredients into unforgettable dining experiences.</p>
+  </div>
+</div>
+    </div>
+ <div class="col-sm-3 text-center">
+        <div class="card sm-auto cardzoom" style="width: 18rem;">
+  <img src="{%static 'images/team-3.jpg' %}" class="card-img-top" height="300" width="100" alt="..."/>
+  <div class="card-body">
+    <h5 class="card-title">Harry</h5>
+      <h6 class="card-subtitle">Expediter(Kitchen Coordinator)
+</h6>
+    <p class="card-text">Chef Harry ensures seamless coordination between the kitchen and dining room. With a sharp eye for detail and impeccable timing, he guarantees that every dish is delivered to perfection, creating a smooth dining experience for every guest."</p>
+  </div>
+</div>
+    </div>
+ <div class="col-sm-3 text-center">
+        <div class="card sm-auto cardzoom" style="width: 18rem;">
+  <img src="{% static 'images/team-4.jpg'%}" class="card-img-top" height="300" width="100" alt="..."/>
+  <div class="card-body">
+    <h5 class="card-title">Mr.John</h5>
+      <h6 class="card-subtitle">Grill Chef</h6>
+    <p class="card-text">"Chef John is known  for her bold flavors  and grilling expertise.  Whether it's tender meats or  smoky vegetables, her grilling  techniques bring out the perfect balance  of char and tenderness  in every  dish."</p>
+  </div>
+</div>
+    </div>
+</div>
+<!--  Our Team Section end -->
+{% endblock %}

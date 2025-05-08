@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block childpage %}
+<style>
+    .form-control
+    {
+    height:50px;
+    }
+    .info
+    {
+    text-decoration:none;
+    color:black;
+    font-size:13px;
+    transition:2s;
+    }
+    .info:hover
+    {
+    color:orange;
+    transition:2s;
+    font-size:15px;
+    }
+</style>
+<div class="row heading text-center my-4">
+    <div class="col-sm-5 mx-auto">
+    <p class="fs-3 p-0 m-0"> contact <b style="color:maroon;">us <i class="fa-solid fa-phone"></i></b></p>
+        <i>You may contact us by contact number or fill this form any time you
+            need professional support or have any question.</i>
+        <p>Get in Touch – We’re Ready to Serve You!</p>
+
+
+        <hr/>
+    </div>
+</div>
+
+<!-- start contact us -->
+<div class="row">
+    <div class="col-sm-10 mx-auto">
+        <div class="row">
+            <div class="col-sm-6">
+                <form autocomplete="off" method="post">
+                    {% csrf_token %}
+                    Name<br/>
+                    <input  name="name" class="form-control shadow-lg mb-1
+                     bg-body-tertiary rounded-0" type="text" required placeholder="Name..."/>
+
+                    Email<br/>
+                    <input  name="email" class="form-control shadow-lg mb-1
+                     bg-body-tertiary rounded-0" type="email" required placeholder="email..."/>
+
+                    Mobile<br/>
+                    <input  name="mobile" class="form-control shadow-lg mb-1
+                     bg-body-tertiary rounded-0" type="number" required placeholder="Mobile..."/>
+
+                    Subject<br/>
+                    <input  name="subject" class="form-control shadow-lg mb-1
+                     bg-body-tertiary rounded-0" type="text" required placeholder="Subject..."/>
+
+                    Message<br/>
+                    <textarea name="msg" class="form-control shadow-lg mb-1  bg-body-tertiary rounded-0" style="min-height:90px;" placeholder="message..."></textarea><br/>
+
+                    <input type="submit" value="save" class="form-control shadow-lg mb-1  rounded-0 text-light bg-mycolor2 w-25"/>
+
+                </form>
+            </div>
+            <div class="col-sm-6 form-control shadow-lg mb-1 bg-body-#f8f9fa rounded-0 mx-5 " style="height:500px; width:380px;">
+                <div class="row px-3 py-4">
+                    <p> <u class="txt-color1 fs-4"><b>Contact </b></u><b>  Info </b> </p>
+                    <br/>
+                    <div class="col-sm-1 px-4"><i class="fa-solid fa-location-dot txt-color2 "></i></div>
+                    <div class="col-sm-9 px-0"><h5 class="txt-color2"><u>Office</u> Address</h5>
+                        <p style="font-size:15px;">Plot No-43, Behind H.P Petrol Pump,
+                          Tedhi Pulia Ring Rd, Sector 5,
+                          Vikas Nagar, Lucknow
+                           Uttar Pradesh 226022</p>
+                    </div>
+                </div>
+                 <div class="row px-3">
+                    <div class="col-sm-1 px-4"><i class="fa-solid fa-phone txt-color2"></i></div>
+                    <div class="col-sm-9 px-0"><h5 class="txt-color2"><u>Call</u> Us</h5>
+                        <p class="fs-6"><b>For More Info</b>
+                            <br/>
+                            <a  class="info" href="#">+91 9140444301,
+                               +91 7007237006,
+                                <br/>+91 7348481001,
+                               +91 7348481004,</a>
+                          </p>
+                    </div>
+                 </div>
+                <div class="row px-3">
+                    <div class="col-sm-1 px-4"><i class="fa-solid fa-envelope txt-color2"></i></div>
+                    <div class="col-sm-9 px-0"><h5 class="txt-color2"><u>Mail</u> Us</h5>
+                        <p class="fs-6">
+                            <a href="" class="info" style="font-size:15px;">kavyasingh8808@gmail.com
+                                <br/>
+                            singh@gmail.com
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end contact us -->
+
+  <div class="row gmap">  <div class="col-sm-10 mx-auto">
+        <div class="row heading text-center my-4">
+    <div class="col-sm-5 mx-auto">
+    <p class="fs-3 p-0 m-0"> Find us on <b class="txt-color2"> Google Map <i class="fa-solid fa-location-dot"></i></b></p>
+        <i>You may contact us by contact number or fill this form any time you
+            need professional support or have any question.</i>
+
+
+        <hr/>
+    </div>
+</div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28467.60331889502!2d80.9229825214276!3d26.889196920083208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39995785d5f7f1a5%3A0xffa47f1efe103f0d!2sTechpile%20Technology%20Pvt.%20Ltd.%20%7C%7C%20Internet%20website%20developers!5e0!3m2!1sen!2sin!4v1726643588097!5m2!1sen!2sin" style="max-height:400px; min-height:350px; width:100%;" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+
+{% endblock %}

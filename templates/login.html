@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block childpage %}
+<style>
+    .form-control
+    {
+    height:50px;
+    border:0 !important ;
+    }
+</style>
+<!-- start heading-->
+<div class="row mb-2 mt-4">
+    <div class="col-sm-5 mx-auto text-center">
+        <p class="fs-3 m-0">Login <b class="txt-color2"> Here <i class="fa-solid fa-right-to-bracket"></i> </b></p>
+        <hr/>
+        <h5> Keep Your Data Safe ! </h5>
+        <hr/>
+    </div>
+</div>
+<!-- endheading-->
+<div class="row ">
+    <div class="col-sm-4 mx-auto shadow-lg m-3">
+
+        <form method="post">
+            {% csrf_token %}
+        Userid<br/><input type="email" name="userid" class="form-control shadow-lg mb-2" placeholder="username.."/>
+
+     Password<br/><input type="password" name="passwd" class="form-control shadow-lg mb-2" placeholder="password.."/>
+            <input type="submit" value="login" class=" form-control border-0 mt-2 mb-3 btn bg-mycolor2 text-light border-0"/>
+        </form>
+        </div>
+</div>
+
+
+{% endblock %}

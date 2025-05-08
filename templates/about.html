@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+
+{% block childpage %}
+<div class="container">
+<div class="row heading text-center my-4">
+    <div class="col-sm-4 mx-auto">
+    <p class="fs-3 p-0 m-0">About<b style="color:maroon"> Us <i class="fa-solid fa-phone"></i></b></p>
+        <i></i>
+        <hr/>
+   </div>
+ </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <img src="{% static 'images/product/a17.jpg' %}" class="img-fluid"/>
+        </div>
+        <div class="col-sm-6 pt-3 px-3 ">
+            Welcome to Flavour Fusion, where every dish tells a story of passion, flavor, and care. Our journey began with a simple mission: to create a dining experience that combines exceptional taste with heartfelt hospitality. Using only the freshest, locally-sourced ingredients, we craft dishes that celebrate culinary traditions while embracing modern innovation. From comforting classics to bold, adventurous flavors, our menu offers something to delight every palate.
+
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-sm-6 pt-3 px-3">
+            At Flavour Fusion, we believe dining is more than just food—it’s about creating memories. Whether you're gathering with loved ones, celebrating milestones, or simply unwinding after a long day, we strive to provide an ambiance that feels like home. Our team is dedicated to ensuring every visit is a blend of warmth, flavor, and joy. Join us to discover a dining experience that’s as unique as you are!
+        </div>
+        <div class="col-sm-6">
+            <img src="{% static 'images/ttt.jpg' %}" class="img-fluid"/>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

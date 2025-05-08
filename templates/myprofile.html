@@ -1,0 +1,144 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block childpage %}
+
+{% if not request.session.user %}
+<script>
+    alert("You have login first...")
+    location.href='/login/'
+</script>
+{% endif %}
+
+
+<style>
+    .form
+    {
+    height:50px;
+    background:#e9eaec !important;
+    border-radius:0px  !important;
+    }
+    .input-group-text
+    {
+    height:50px;
+    width:50px;
+    text-align:center;
+    background:rgba(0,0,0,.7);
+    border-radius:0px !important;
+    color:white;
+
+    }
+
+</style>
+
+        <!-- heading -->
+<div class="row mb-2 mt-4 text-center">
+    <div class="col-sm-5 mx-auto">
+        <p class="fs-3 m-0">My <b class="text-color2">Profile</b></p>
+        <i>Welcome to Your Profile, Manage Your Orders, Preferences, and Enjoy Exclusive Offers!</i>
+        <hr/>
+    </div>
+</div>
+<!-- end heading -->
+{% for i in userinfo %}
+
+<div class="row mt-5 ">
+    <div class="col-sm-6 shadow-lg md-3 p-5 mx-auto position-relative mt-5">
+        <img src="../{{i.picture}}" style="height:200px;width:200px;"
+             class="rounded-pill border border-dark p-1 border p-2 position-absolute top-0 start-50 translate-middle" />
+        <div class="pt-5">
+         <b><i class="fa-solid fa-user"></i> Name: </b> {{i.name}} <br/>
+         <b><i class="fa-solid fa-mobile"></i> Mobile: </b> {{i.mobile}}  <br/>
+         <b><i class="fa-solid fa-envelope"></i> Email: </b> {{i.email}}   <br/>
+         <b><i class="fa-solid fa-address-book"></i> Address: </b> {{i.address}}  <br/>
+         <b><i class="fa-solid fa-city"></i> City: </b> {{i.city}}  <br/>
+         <b><i class="fa-brands fa-pinterest"></i> Pincode: </b> {{i.pincode}}  <br/>
+        </div>
+        <p  id="btnu" class="btn btn-outling-dark rounded-0 ">Update Profile <i class="fa-solid fa-pencil"></i></p>
+    </div>
+</div>
+<!-- profilr update form --->
+<div class="container" id="uform" style="display:none;">
+    <div class="row heading text-center my-4">
+    <div class="col-sm-4 mx-auto">
+    </div>
+ </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 shadow-lg p-5">
+            <form autocomplete="off" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+     <div class="row mt-4">
+                <div class="col-sm-6">
+                    <div class="input-group flex-nowrap">
+  <span class="input-group-text" ><i class="fa-solid fa-user"></i></span>
+  <input type="text" name="name"class="form-control" value="{{i.name}}" placeholder="Enter Your Name.." aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+                </div>
+         <div class="col-sm-6">
+                              <div class="input-group flex-nowrap">
+  <span class="input-group-text" ><i class="fa-solid fa-key"></i></span>
+  <input type="password" value="{{i.password}} " class="form-control" name="passwd" placeholder="Enter Your Password.." aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+         </div>
+            </div>
+             <div class="row mt-4">
+                <div class="col-sm-6">
+                    <div class="input-group flex-nowrap">
+  <span class="input-group-text" ><i class="fa-solid fa-key"></i></span>
+  <input type="password" class="form-control" name="cpasswd" placeholder="Enter Your old password.." aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+                </div>
+                       <div class="col-sm-6">
+                    <div class="input-group flex-nowrap">
+  <span class="input-group-text" ><i class="fa-solid fa-mobile-screen-button"></i></span>
+  <input type="text" class="form-control" name="mobile" value="{{i.mobile}} " placeholder="Enter Your Mobile No.." aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+                </div>
+            </div>
+             <div class="row mt-4">
+                <div class="col-sm-6">
+                    <div class="input-group flex-nowrap">
+  <span class="input-group-text" ><i class="fa-solid fa-address-book"></i></span>
+  <input type="text" class="form-control"  name="address" value="{{i.address}}"  placeholder="Enter Your Address.." aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+                </div>
+                       <div class="col-sm-6">
+                    <div class="input-group flex-nowrap">
+  <span class="input-group-text" ><i class="fa-solid fa-mountain-city"></i></span>
+  <input type="text" class="form-control" value="{{i.city}} " name="city" placeholder="Enter Your City.." aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+                </div>
+            </div>
+             <div class="row mt-4">
+                <div class="col-sm-6">
+                    <div class="input-group flex-nowrap">
+  <span class="input-group-text" ><i class="fa-regular fa-keyboard"></i></span>
+  <input type="text" class="form-control" name="pincoed" placeholder="Enter Your PinCode.." aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+                </div>
+                       <div class="col-sm-6">
+                    <div class="input-group flex-nowrap">
+  <span class="input-group-text" ><i class="fa-solid fa-file"></i></span>
+  <input type="File" class="form-control" name="fu" placeholder="Enter Your Name.." aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+                </div>
+            </div>
+            <input class="btn  rounded-0 text-light my-3 w-25 " type="submit"  value="Submit Now"/>
+
+            </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+{% endfor %}
+<!-- end profilr update form --->
+<script src="{% static 'js/jquery-3.7.1.js'%}"></script>
+    <script>
+        $(document).ready(function(){
+        $("#btnu").click(function(){
+         $("#uform").show(3000)
+         })
+        })
+    </script>
+{% endblock %}

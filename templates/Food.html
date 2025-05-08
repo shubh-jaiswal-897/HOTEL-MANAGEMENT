@@ -1,0 +1,98 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block childpage %}
+
+        <!-- heading -->
+<div class="row mb-2 mt-4">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5 ">
+        <p class="fs-3 m-0">Today's Deals <b style="color:maroon;">Best Offers</b></p>
+        <i>"🎉 Savor the Savings! 🍴 Explore Today's Exclusive Deals & Irresistible Offers at [Restaurant Name]. Treat Yourself—You Deserve It! 😋</i>
+        <hr/>
+    </div>
+</div>
+<!-- end heading -->
+<div class="row">
+    <div class="col-3">
+<ul class="list-group">
+    <li class="list-group-item bg-mycolor1 text-light">Food Category<i class="fa-solid fa-check"></i></li>
+    {% for x in categorydata %}
+    <li class="list-group-item">
+    <img src="../{{x.category_picture}}" class="img-thumbnail" style="height:50px"/>
+        <a href="../Food?pid={{x.id}}" style="text-decoration:none" class="text-dark">{{x.product_category}}</a>
+
+    </li>
+
+    {% endfor %}
+
+     <li class="list-group-item">
+        <a href="/Food/" style="text-decoration:none" class="text-dark">All Product</a>
+    </li>
+
+</ul>
+
+    </div>
+    <div class="col-9">
+        <div class="row">
+                        {% for i in productdata %}
+            <div class="col-sm-3">
+                <!-- start product -->
+                <div class="card border-0 shadow p-3 mb-5 bg-body-tertiary rounded" >
+
+           <img src="../{{i.product_image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                 <h5 class="card-title">{{i.product_name}}</h5>
+    <p class="card-text">
+        <i class="fa-solid fa-indian-rupee-sign"></i>{{i.price}}
+     <b>{{i.quantity}}</b>
+        <!-- cart count -->
+         <form action="/productcart/">
+               <input type="hidden" name="pid" value="{{i.id}}"/>
+               <input type="hidden" name="pimage" value="{{i.product_image}}"/>
+               <input type="hidden" name="pprice" value="{{i.price}}"/>
+               <input type="hidden" name="pname" value="{{i.product_name}}"/>
+
+
+        <div class="input-group">
+                <b class="input-group-text fs-4" onclick="cminus{{i.id}}()">-</b>
+                <input type="text" value="0" name="pquantity" id="carttxt{{i.id}}" readonly class="form-control text-center fs-3">
+                <b class="input-group-text fs-4" onclick="cplus{{i.id}}()">+</b>
+            </div>
+        <!-- end cart count -->
+    </p>
+    <input type="submit" value="Add" class="btn bg-mycolor1 text-light">
+                 </form>
+  </div>
+</div>
+</div>
+
+                <!-- end product -->
+
+<script>
+    var x{{i.id}}=0
+    function cplus{{i.id}}()
+    {
+    x{{i.id}}++;
+    document.getElementById("carttxt{{i.id}}").value=x{{i.id}}
+    }
+    function cminus{{i.id}}()
+    {
+     if(x{{i.id}}>0)
+    {
+       x{{i.id}}--;
+    document.getElementById("carttxt{{i.id}}").value=x{{i.id}}
+    }
+    }
+</script>
+
+        {% endfor%}
+
+
+
+    </div>
+
+    </div>
+
+</div>
+{% endblock%}
